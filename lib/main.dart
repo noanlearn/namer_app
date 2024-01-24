@@ -100,28 +100,30 @@ class _MyHomePageState extends State<MyHomePage> {
           if (constraints.maxWidth < 450) {
             // Use a more mobile-friendly layout with BottomNavigationBar
             // on narrow screens.
-            return Column(
-              children: [
-                Expanded(child: mainArea, flex: 1),
-                BottomNavigationBar(
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
-                      label: 'Home',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.favorite),
-                      label: 'Favorites',
-                    ),
-                  ],
-                  currentIndex: selectedIndex,
-                  onTap: (value) {
-                    setState(() {
-                      selectedIndex = value;
-                    });
-                  },
-                )
-              ],
+            return SafeArea(
+              child: Column(
+                children: [
+                  Expanded(flex: 1, child: mainArea),
+                  BottomNavigationBar(
+                    items: [
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        label: 'Home',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.favorite),
+                        label: 'Favorites',
+                      ),
+                    ],
+                    currentIndex: selectedIndex,
+                    onTap: (value) {
+                      setState(() {
+                        selectedIndex = value;
+                      });
+                    },
+                  )
+                ],
+              ),
             );
           } else {
             return Row(
